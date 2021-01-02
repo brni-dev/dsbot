@@ -128,8 +128,10 @@ async def reddit(ctx, type, *, subr):
             async with cs.get(f'https://www.reddit.com/r/{subr}/new.json?sort={type}') as r:
                 res = await r.json()
                 e = res['data']['children']
-                reddit=discord.Embed(title="Post Link", url=e [random.randint(0, 25)]['data']['url'], color=0xff0000)
-                reddit.set_image(url=e [random.randint(0, 25)]['data']['url'])
+                dist = res['data']['dist'] - 1
+                ran = random.randint(0, dist)
+                reddit=discord.Embed(title="Post Link", url=e[ran]['data']['url'], color=0xff0000)
+                reddit.set_image(url=e[ran]['data']['url'])
                 reddit.set_footer(text=f"Requested by {ctx.message.author}\nFrom r/{subr}")
                 await ctx.send(embed=reddit)
     except Exception as e:
