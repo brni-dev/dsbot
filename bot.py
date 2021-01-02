@@ -16,24 +16,26 @@ auth = 374964708165287940
 banned = ["!", "$", "%", "&", "(", ")", "*", "+", ",", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "\\", "^", "{", "|", "}", "~", "-"]
 charlie_meme_url = "https://twitter.com/DevilMayAngry/status/1334568205818294272?s=09"
 
-#def make_soup(url):
-#    html = urlopen(url).read()
-#    return BeautifulSoup(html)
+"""
+def make_soup(url):
+    html = urlopen(url).read()
+    return BeautifulSoup(html)
 
-#def get_images(url):
-#    soup = make_soup(url)
+def get_images(url):
+    soup = make_soup(url)
     #this makes a list of bs4 element tags
-#    images = [img for img in soup.findAll('img')]
-#    print(str(len(images)) + "memes found.")
+    images = [img for img in soup.findAll('img')]
+    print(str(len(images)) + "memes found.")
     #compile our unicode list of image links
-#    image_links = [each.get('src') for each in images]
-#    for each in image_links:
-#        filename=each.split('/')[-1]
-#        urllib.urlretrieve(each, filename)
-#    return image_links
+    image_links = [each.get('src') for each in images]
+    for each in image_links:
+        filename=each.split('/')[-1]
+        urllib.urlretrieve(each, filename)
+        return image_links
 
 #a standard call looks like this
-#get_images('http://www.wookmark.com')
+get_images('http://www.wookmark.com')
+"""
 
 #await asyncio.sleep(5)
 #0x8c00ff - color purple
@@ -72,25 +74,27 @@ async def help(ctx):
     help.set_footer(text=f"Requested by {ctx.message.author}")
     await ctx.send(embed=help)
 
-#@bot.command()
-#async def math(ctx, num1: str, op=None, num2: str):
-#    try:
-#        if op == None:
-#            await ctx.send("You didn't satisfy (an) argument/s!")
-#        if op == "+":
-#            return ctx.send(f"Result: {num1 + num2 as float}")
-#        if op == "-":
-#            return ctx.send(f"Result: {num1 - num2 as float}")
-#        if op == "*":
-#            return ctx.send(f"Result: {num1 * num2 as float}")
-#        if op == "/":
-#            return ctx.send(f"Result: {num1 / num2 as float}")
-#        if op == "%":
-#            return ctx.send(f"Result: {num1 % num2 as int}%")
-#    except ZeroDivisionError:
-#        error=discord.Embed(title="Zero Division Error", description=f"`Error log: {e}`", color=0xff0000)
-#        error.set_footer(text=f"Error caused by {ctx.message.author}")
-#        ctx.send(embed=error)
+"""
+@bot.command()
+async def math(ctx, num1: str, op=None, num2: str):
+    try:
+        if op == None:
+            await ctx.send("You didn't satisfy (an) argument/s!")
+        if op == "+":
+            return ctx.send(f"Result: {num1 + num2 as float}")
+        if op == "-":
+            return ctx.send(f"Result: {num1 - num2 as float}")
+        if op == "*":
+            return ctx.send(f"Result: {num1 * num2 as float}")
+        if op == "/":
+            return ctx.send(f"Result: {num1 / num2 as float}")
+        if op == "%":
+            return ctx.send(f"Result: {num1 % num2 as int}%")
+    except ZeroDivisionError:
+        error=discord.Embed(title="Zero Division Error", description=f"`Error log: {e}`", color=0xff0000)
+        error.set_footer(text=f"Error caused by {ctx.message.author}")
+        ctx.send(embed=error)
+"""
 
 @bot.command()
 async def ddos(ctx, member: discord.Member):
@@ -257,12 +261,14 @@ async def toilet(ctx, *, inp):
     out = str(output.decode("utf-8"))
     await ctx.channel.send(f"```text\n{out} ```")
 
-#@bot.command()
-#async def base64(ctx, type, *, message):
-#    if type == "encode":
-#        get = requests.get("url")
-#        parse = json.loads(get.text)
-#        print(parse["link"])
+"""
+@bot.command()
+async def base64(ctx, type, *, message):
+    if type == "encode":
+        get = requests.get("url")
+        parse = json.loads(get.text)
+        print(parse["link"])
+"""
 
 @bot.command()
 async def reminder(ctx):
@@ -340,21 +346,25 @@ async def kick (ctx, member:discord.User=None, reason=None):
     kick.set_image(url=pfp)
     kick.set_footer(text=f"Kicked by {ctx.message.author}")
     await ctx.send(embed=kick)
+    
+"""
+@bot.command()
+@has_permissions(kick_members=True)
+async def mute(ctx, member: discord.Member):
+    muted_role = discord.utils.get(member.guild.roles, name = "muted noob")
+    await member.add_roles(muted_role)
+    await ctx.channel.send(f"Shut up! {member} has been muted")
+"""
 
-#@bot.command()
-#@has_permissions(kick_members=True)
-#async def mute(ctx, member: discord.Member):
-#    muted_role = discord.utils.get(member.guild.roles, name = "muted noob")
-#    await member.add_roles(muted_role)
-#    await ctx.channel.send(f"Shut up! {member} has been muted")
-
-#@bot.command()
-#@has_permissions(kick_members=True)
-#async def unmute(ctx, member: discord.Member):
-#    muted_role = discord.utils.get(member.guild.roles, name = "muted noob")
-#    await member.remove_roles(muted_role)
-#    await ctx.channel.send(f"Fine you can speak. {member} has been unmuted")
-
+"""
+@bot.command()
+@has_permissions(kick_members=True)
+async def unmute(ctx, member: discord.Member):
+    muted_role = discord.utils.get(member.guild.roles, name = "muted noob")
+    await member.remove_roles(muted_role)
+    await ctx.channel.send(f"Fine you can speak. {member} has been unmuted")
+"""
+    
 @bot.command()
 async def gayness(ctx, member: discord.Member):
     try:
